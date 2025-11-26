@@ -1,8 +1,4 @@
 def algoritmo_Astar_bidireccional(G, inicial, final, heuristica, coords, considerar_minusvalidos=False):
-    """
-    Ejecuta A* en ambas direcciones y selecciona la mejor ruta
-    Retorna: (ruta:list, tiempo_total:minutos, num_transbordos:int)
-    """
     
     # Ejecutar A* en dirección normal (inicial → final)
     ruta_directa, tiempo_directo, transbordos_directo = algoritmo_Astar(
@@ -38,11 +34,7 @@ def algoritmo_Astar_bidireccional(G, inicial, final, heuristica, coords, conside
 
 
 def algoritmo_Astar(G, inicial, final, heuristica, coords, considerar_minusvalidos=False):
-    """
-    A* orientado a TIEMPO (minutos). Heurística debe devolver distancia en METROS,
-    por eso convertimos la heurística a minutos antes de usarla.
-    Retorna: (ruta:list, tiempo_total:minutos, num_transbordos:int)
-    """
+   
 
     # ----- PARÁMETROS -----
     PENALIZACION_TRANSBORDO_MIN = 2      # minutos extra por transbordo "molesto"
@@ -102,9 +94,6 @@ def algoritmo_Astar(G, inicial, final, heuristica, coords, considerar_minusvalid
                     cambio = True
                     linea_propuesta = lineas_comunes[0]
 
-            # 🔧 LÓGICA DE ACCESIBILIDAD MEJORADA
-            # Si modo accesibilidad activado: impedir transbordos en estaciones no accesibles
-            # PERO permitir estaciones intermedias no accesibles (usuario no se baja)
             if considerar_minusvalidos:
                 # Si hay transbordo y la estación no es accesible, rechazar
                 if cambio and not G.nodes[vecino].get('accesible', False):
