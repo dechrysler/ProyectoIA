@@ -99,17 +99,3 @@ def calcular_tiempo_aproximado(distancia_metros, velocidad_kmh=30):
 def obtener_coordenadas():
     """Función principal para obtener coordenadas (solo carga del CSV)"""
     return cargar_coordenadas_desde_csv()
-
-if __name__ == "__main__":
-    try:
-        coordenadas = obtener_coordenadas()
-        print(f"✅ Coordenadas cargadas exitosamente - Total: {len(coordenadas)}")
-        
-        # Ejemplo de cálculo
-        if 'Tacubaya' in coordenadas and 'Centro Medico' in coordenadas:
-            distancia = calcular_distancia_recta('Tacubaya', 'Centro Medico', coordenadas)
-            tiempo = calcular_tiempo_aproximado(distancia)
-            print(f"📏 Tacubaya → Centro Médico: {distancia/1000:.2f} km, ⏱️ {tiempo:.1f} min")
-            
-    except Exception as e:
-        print(f"❌ Error: {e}")
